@@ -1,1 +1,55 @@
+import pandas as pd
+import matplotlib
+import matplotlib.pyplot as plt
+import seaborn as sns
 
+data = {
+    "Student": ["Amit", "Bhavana", "Chetan", "Diya", "Esha", "Farhan"],
+    "Maths": [75, 82, 68, 90, 72, 85],
+    "Python": [80, 78, 70, 92, 75, 88],
+    "Attendence": [85, 90, 78, 95, 80, 92],
+    "City": ["Pune", "Mumbai", "Pune", "Nashik", "Mumbai", "Pune"]
+}
+
+df = pd.DataFrame(data)
+print(df)
+
+df.to_csv("data.csv", index = False)
+
+df_loaded = pd.read_csv("data.csv")
+print(df_loaded)
+
+x_values = df["Student"]
+y_values = df["Python"]
+
+plt.plot(x_values, y_values, marker = "*")
+plt.title("Student's marks in Python")
+plt.xlabel("Name of the Student")
+plt.ylabel("Marks in Python")
+plt.show()
+plt.figure()
+
+plt.bar(x_values, y_values)
+plt.title("Student's marks in Maths")
+plt.xlabel("Name of Students")
+plt.ylabel("Marks in Maths")
+plt.show()
+plt.figure()
+
+a_values = df["Maths"]
+b_values = df["Python"]
+
+plt.scatter(a_values, b_values, color = "red")
+plt.title("Scatter chart for marks in Maths and Python")
+plt.show()
+
+corr = df.corr(numeric_only = True)
+
+#OR
+corr = df[["Maths", "Python", "Attendence"]].corr()
+
+
+sns.heatmap(corr, annot = True, cmap = "coolwarm")
+plt.figure()
+
+plt.show()
