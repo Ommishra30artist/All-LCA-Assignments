@@ -1,1 +1,37 @@
+import pandas as pd
 
+data = {
+    "Bowler": ["Jasprit", "Starc", "Bolt", "Anderson", "Steyn"],
+    "Matches": [20, 29, 19, 33, 35],
+    "Wickets": [38, 45, 31, 50, None]
+}
+
+df = pd.DataFrame(data)
+print(df)
+
+new_df = df.dropna()
+print("\n", new_df)#removes the row having a NaN value
+
+new_df_2 = df.fillna(56)
+print("\n", new_df_2)#fills the row having NaN with 56
+
+
+data_2 = {
+    "StudentID": [101, 102, 103, 102, 104, 105, 101, 106, 107, 108, 109, 103],
+    "Name": ["Asha Patil", "Rohan Deshmukh", "Meera Joshi", "Rohan Deshmukh", "Kunal Shah", "Sneha Kulkarni", "Asha Patil", "Test User", "Vikram More", "Test Entry", "Pooja Nair", "Meera Joshi"],
+    "Department": ["Mechanical", "Computer", "Civil", "Computer", "Electrical", "Computer", "Mechanical", "Test", "Civil", "Test", "Electrical", "Civil"],
+    "Marks": [78, 85, 69, 85, 72, 91, 78, 0, 64, 0, 88, 69],
+    "City": ["Pune", "Mumbai", "Nagpur", "Mumbai", "Pune", "Nashik", "Pune", "Test", "Nagpur", "Test", "Mumbai", "Nagpur"],
+    "Remarks": ["OK", "OK", "OK", "OK", "OK", "OK", "OK","Dummy Entry", "OK", "Dummy Entry", "OK", "OK"]
+}
+
+df = pd.DataFrame(data_2)
+print(df)
+
+print("Shape before : ", df.shape)
+print(df.isnull().sum())
+print("Mean marks before : ", df["Marks"].mean())
+
+print(df.duplicated())
+print(df.duplicated().sum())
+print(df.drop_duplicates())
